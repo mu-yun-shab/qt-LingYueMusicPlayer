@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Music</class>
+ <widget class="QMainWindow" name="Music">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Music</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+                             background-color: #121212;
+                             color: #FFFFFF;
+                         }
+                         QPushButton {
+                             background-color: #282828;
+                             color: #FFFFFF;
+                             border: none;
+                             padding: 8px 16px;
+                         }
+                         QPushButton:hover {
+                             background-color: #383838;
+                         }
+                         QLineEdit {
+                             background-color: #282828;
+                             color: #FFFFFF;
+                             border: none;
+                            padding: 8px;
+                         }
+                         QListWidget {
+                            background-color: #282828;
+                             color: #FFFFFF;
+                            border: none;
+                         }
+                         QListWidget::item:selected {
+                             background-color: #383838;
+                         };</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="timeLabel">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>570</y>
+      <width>120</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #FFFFFF; font-size: 10pt;</string>
+    </property>
+    <property name="text">
+     <string>00:00 / 00:00</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CloseButton">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/icon/close.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QSlider" name="MusicPlaybackProgress">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>570</y>
+      <width>411</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* 水平滑动槽 */
+QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: rgba(0, 0, 0, 50);
+height: 12px;
+border-radius: 6px;
+}
+
+/* 已滑过的部分 */
+QSlider::sub-page:horizontal {
+background: rgba(80, 166, 234, 1);
+border-radius: 2px;
+margin-top: 8px;
+margin-bottom: 8px;
+}
+
+/* 未滑过的部分 */
+QSlider::add-page:horizontal {
+background: rgb(255, 255, 255);
+border: 0px solid #777;
+border-radius: 2px;
+margin-top: 9px;
+margin-bottom: 9px;
+}
+
+/* 滑块 */
+QSlider::handle:horizontal {
+background: rgb(193, 204, 208);
+width: 20px;
+height: 20px;
+border: 1px solid rgb(193, 204, 208);
+border-radius: 10px;
+margin-top: -4px;
+margin-bottom: -4px;
+}
+
+/* 滑块悬停时的样式 */
+QSlider::handle:horizontal:hover {
+background: rgb(193, 204, 208);
+width: 25px;
+height: 25px;
+border: 1px solid rgb(193, 204, 208);
+border-radius: 12px;
+margin-top: -6px;
+margin-bottom: -6px;
+}</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="MusicCover">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>540</y>
+      <width>54</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>歌曲封面</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PlaylistOpenButton">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>220</y>
+      <width>21</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	font: 75 11pt &quot;Century Gothic&quot;;
+}</string>
+    </property>
+    <property name="text">
+     <string>《</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="Playlist">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>59</y>
+      <width>601</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{
+	background-color: rgb(30, 30, 30);
+}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PlaylistCloseButton">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>220</y>
+      <width>21</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	font: 75 11pt &quot;Century Gothic&quot;;
+}</string>
+    </property>
+    <property name="text">
+     <string>》</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="player">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>540</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	
+	border-image: url(:/icon/play.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PreviousTrack">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>540</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	
+	border-image: url(:/icon/rewind-back.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="NextTrack">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>540</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	border-image: url(:/icon/rewind-forward.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PlaylistImport">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>500</y>
+      <width>311</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>导入</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PlaylistExport">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>500</y>
+      <width>301</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>导出</string>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/*标签全局设置*/
+QTabBar::tab{
+	height:50px;
+	width:100px;
+	background-color: rgb(25, 25, 25);
+	color: rgb(255, 255, 255);
+	border-radius: 15px;
+	font: 75 12pt &quot;Century Gothic&quot;;
+}
+/*logo标签*/
+QTabBar::tab:first{
+	border-image: url(:/icon/logo.png);
+	border-radius: 0px;
+}
+/*标签选中状态*/
+QTabBar::tab::selected{
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	border-bottom: 2px solid #232323; 
+}
+
+/*无边框*/
+QTabWidget::pane {
+	border-top: 2px solid cyan;
+	border-top-color: rgb(30, 30, 30);
+}
+
+
+
+
+</string>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab_1">
+     <attribute name="title">
+      <string/>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>播放</string>
+     </attribute>
+     <widget class="QTextBrowser" name="tab_2_Lyrics">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>130</y>
+        <width>341</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTextBrowser {	
+	background-color: rgb(20, 20, 20);
+        border: none;
+        font: 75 12pt &quot;Century Gothic&quot;;
+}</string>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Century Gothic'; font-size:12pt; font-weight:72; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:26pt; font-weight:400;&quot;&gt;歌词&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tab_2_SongTitle">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>70</y>
+        <width>271</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 18pt &quot;楷体&quot;;</string>
+      </property>
+      <property name="text">
+       <string>曲名</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tab_2_FloatingLyricsButton">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>340</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/icon/FloatingLyrics.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tab_2_Lock">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>340</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/icon/unlock.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>列表</string>
+     </attribute>
+     <widget class="QListWidget" name="tab_3_LocalLists">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>50</y>
+        <width>791</width>
+        <height>421</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="tab_3_SearchLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <zorder>tab_3_SearchLineEdit</zorder>
+     <zorder>tab_3_LocalLists</zorder>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>下载</string>
+     </attribute>
+     <widget class="QPushButton" name="tab_4_ManualDownloadButton">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>10</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string> 手动下载</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="tab_4_DownloadList">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>50</y>
+        <width>801</width>
+        <height>421</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="tab_4_SearchLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <zorder>tab_4_SearchLineEdit</zorder>
+     <zorder>tab_4_ManualDownloadButton</zorder>
+     <zorder>tab_4_DownloadList</zorder>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>设置</string>
+     </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>781</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="tab_5_LyricsHoveringWindowControlTransparencyLabel">
+         <property name="text">
+          <string>歌词悬浮窗控件透明度</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="tab_5_LyricsHoveringWindowControlTransparencySlider">
+         <property name="value">
+          <number>80</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="SongTitle">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>550</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> 滚动曲名</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>PlaylistImport</zorder>
+   <zorder>timeLabel</zorder>
+   <zorder>PlaylistCloseButton</zorder>
+   <zorder>Playlist</zorder>
+   <zorder>MusicPlaybackProgress</zorder>
+   <zorder>MusicCover</zorder>
+   <zorder>player</zorder>
+   <zorder>PreviousTrack</zorder>
+   <zorder>NextTrack</zorder>
+   <zorder>PlaylistExport</zorder>
+   <zorder>tabWidget</zorder>
+   <zorder>PlaylistOpenButton</zorder>
+   <zorder>CloseButton</zorder>
+   <zorder>SongTitle</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
