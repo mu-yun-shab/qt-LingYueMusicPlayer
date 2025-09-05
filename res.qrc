@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon/logo.png</file>
+        <file>icon/close.png</file>
+        <file>icon/pause.png</file>
+        <file>icon/play.png</file>
+        <file>icon/rewind-back.png</file>
+        <file>icon/rewind-forward.png</file>
+        <file>icon/search.png</file>
+        <file>icon/default_cover.png</file>
+        <file>icon/app1.ico</file>
+        <file>icon/FloatingLyrics.png</file>
+        <file>icon/lock.png</file>
+        <file>icon/unlock.png</file>
+    </qresource>
+</RCC>
